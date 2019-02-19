@@ -2,6 +2,7 @@ package com.scwang.refreshlayout.activity.style;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -17,22 +18,24 @@ import com.scwang.refreshlayout.adapter.BaseRecyclerAdapter;
 import com.scwang.refreshlayout.adapter.SmartViewHolder;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-import static com.scwang.refreshlayout.R.layout.listitem_style_delivery;
+import static com.scwang.refreshlayout.R.layout.item_style_delivery;
 
 public class DeliveryStyleActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private enum Item {
-        默认主题("更改为默认主题颜色"),
-        橙色主题("更改为橙色主题颜色"),
-        红色主题("更改为红色主题颜色"),
-        绿色主题("更改为绿色主题颜色"),
-        蓝色主题("更改为蓝色主题颜色"),
+        默认主题(R.string.item_style_theme_default_abstract),
+        橙色主题(R.string.item_style_theme_orange_abstract),
+        红色主题(R.string.item_style_theme_red_abstract),
+        绿色主题(R.string.item_style_theme_green_abstract),
+        蓝色主题(R.string.item_style_theme_blue_abstract),
         ;
-        public String name;
-        Item(String name) {
-            this.name = name;
+        public int nameId;
+        Item(@StringRes int nameId) {
+            this.nameId = nameId;
         }
     }
 
@@ -54,7 +57,7 @@ public class DeliveryStyleActivity extends AppCompatActivity implements AdapterV
             window.getDecorView().setSystemUiVisibility(systemUiVisibility);
         }
 
-        mToolbar = (Toolbar)findViewById(R.id.toolbar);
+        mToolbar = findViewById(R.id.toolbar);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +65,7 @@ public class DeliveryStyleActivity extends AppCompatActivity implements AdapterV
             }
         });
 
-        mRefreshLayout = (RefreshLayout)findViewById(R.id.smartLayout);
+        mRefreshLayout = findViewById(R.id.refreshLayout);
         if (isFirstEnter) {
             isFirstEnter = false;
             mRefreshLayout.autoRefresh();//第一次进入触发自动刷新，演示效果
@@ -73,7 +76,10 @@ public class DeliveryStyleActivity extends AppCompatActivity implements AdapterV
             RecyclerView recyclerView = (RecyclerView) view;
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.setItemAnimator(new DefaultItemAnimator());
-            recyclerView.setAdapter(new BaseRecyclerAdapter<Item>(Arrays.asList(Item.values()), listitem_style_delivery,this) {
+            List<Item> items = new ArrayList<>();
+            items.addAll(Arrays.asList(Item.values()));
+            items.addAll(Arrays.asList(Item.values()));
+            recyclerView.setAdapter(new BaseRecyclerAdapter<Item>(items, item_style_delivery,this) {
                 @Override
                 protected void onBindViewHolder(SmartViewHolder holder, Item model, int position) {
                 }
@@ -83,7 +89,7 @@ public class DeliveryStyleActivity extends AppCompatActivity implements AdapterV
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        switch (Item.values()[position]) {
+        switch (Item.values()[position % Item.values().length]) {
             case 默认主题:
                 mToolbar.setBackgroundResource(android.R.color.white);
                 mToolbar.setTitleTextColor(0xffbbbbbb);

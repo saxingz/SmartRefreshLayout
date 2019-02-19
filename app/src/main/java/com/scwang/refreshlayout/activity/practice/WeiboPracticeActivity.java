@@ -1,11 +1,13 @@
 package com.scwang.refreshlayout.activity.practice;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.scwang.refreshlayout.R;
 import com.scwang.refreshlayout.util.StatusBarUtil;
@@ -15,7 +17,7 @@ import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
 import com.scwang.smartrefresh.layout.util.DensityUtil;
 
 /**
- * 微博列表
+ * 微博主页
  */
 public class WeiboPracticeActivity extends AppCompatActivity {
 
@@ -27,7 +29,7 @@ public class WeiboPracticeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_practice_weibo);
 
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,22 +43,50 @@ public class WeiboPracticeActivity extends AppCompatActivity {
 
         final View parallax = findViewById(R.id.parallax);
         final View buttonBar = findViewById(R.id.buttonBarLayout);
-        final NestedScrollView scrollView = (NestedScrollView)findViewById(R.id.scrollView);
-        final RefreshLayout refreshLayout = (RefreshLayout)findViewById(R.id.refreshLayout);
+        final NestedScrollView scrollView = findViewById(R.id.scrollView);
+        final RefreshLayout refreshLayout = findViewById(R.id.refreshLayout);
+
+        findViewById(R.id.attention).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(),"点击了关注",Toast.LENGTH_SHORT).show();
+            }
+        });
+        findViewById(R.id.leaveword).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(),"点击了留言",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         refreshLayout.setOnMultiPurposeListener(new SimpleMultiPurposeListener() {
             @Override
-            public void onHeaderPulling(RefreshHeader header, float percent, int offset, int bottomHeight, int extendHeight) {
-                mOffset = offset / 2;
-                parallax.setTranslationY(mOffset - mScrollY);
-                toolbar.setAlpha(1 - Math.min(percent, 1));
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                refreshLayout.finishRefresh(3000);
+            }
+
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                refreshLayout.finishLoadMore(2000);
             }
             @Override
-            public void onHeaderReleasing(RefreshHeader header, float percent, int offset, int bottomHeight, int extendHeight) {
+            public void onHeaderMoving(RefreshHeader header, boolean isDragging, float percent, int offset, int headerHeight, int maxDragHeight) {
                 mOffset = offset / 2;
                 parallax.setTranslationY(mOffset - mScrollY);
                 toolbar.setAlpha(1 - Math.min(percent, 1));
             }
+//            @Override
+//            public void onHeaderPulling(@NonNull RefreshHeader header, float percent, int offset, int bottomHeight, int maxDragHeight) {
+//                mOffset = offset / 2;
+//                parallax.setTranslationY(mOffset - mScrollY);
+//                toolbar.setAlpha(1 - Math.min(percent, 1));
+//            }
+//            @Override
+//            public void onHeaderReleasing(@NonNull RefreshHeader header, float percent, int offset, int bottomHeight, int maxDragHeight) {
+//                mOffset = offset / 2;
+//                parallax.setTranslationY(mOffset - mScrollY);
+//                toolbar.setAlpha(1 - Math.min(percent, 1));
+//            }
         });
         scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             private int lastScrollY = 0;

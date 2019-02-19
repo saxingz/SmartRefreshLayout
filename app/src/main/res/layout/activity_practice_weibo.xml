@@ -4,49 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context="com.scwang.refreshlayout.activity.practice.WeiboPracticeActivity">
 
     <ImageView
         android:id="@+id/parallax"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="670dp"
         android:layout_marginTop="-300dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/app_name"
         android:scaleType="centerCrop"
         android:src="@mipmap/image_weibo_home_2"
         app:layout_collapseMode="parallax"/>
-
-    <android.support.v7.widget.Toolbar style="@style/AppTheme.Toolbar"
-        android:id="@+id/toolbar"
-        android:background="@android:color/transparent"
-        android:layout_marginBottom="0dp"
-        app:navigationIcon="?attr/homeAsUpIndicator"
-        app:layout_collapseMode="pin">
-        <android.support.v7.widget.ButtonBarLayout
-            android:id="@+id/buttonBarLayout"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content">
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/toolbar_avatar"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginEnd="@dimen/padding_common_d"
-                android:layout_marginRight="@dimen/padding_common_d"
-                android:src="@mipmap/image_avatar_5"
-                app:civ_border_width="@dimen/division_line"
-                app:civ_border_color="@android:color/white"
-                app:civ_border_overlay="true"/>
-            <TextView
-                android:id="@+id/title"
-                android:layout_gravity="center"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textSize="16sp"
-                android:text="一醉方休"/>
-        </android.support.v7.widget.ButtonBarLayout>
-    </android.support.v7.widget.Toolbar>
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refreshLayout"
@@ -63,6 +33,7 @@
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:overScrollMode="never"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -78,7 +49,7 @@
                         android:layout_height="wrap_content"
                         app:titleEnabled="false"
                         app:contentScrim="?attr/colorPrimary"
-                        app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                         <RelativeLayout
                             android:id="@+id/panel_lyt"
@@ -93,10 +64,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="40dp"
-                                android:paddingTop="@dimen/padding_common_v"
-                                android:paddingBottom="@dimen/padding_common_v"
-                                android:paddingLeft="@dimen/padding_common_h"
-                                android:paddingRight="@dimen/padding_common_h"
+                                android:paddingTop="@dimen/dimenPaddingVertical"
+                                android:paddingBottom="@dimen/dimenPaddingVertical"
+                                android:paddingLeft="@dimen/dimenPaddingHorizontal"
+                                android:paddingRight="@dimen/dimenPaddingHorizontal"
                                 android:background="@android:color/white">
 
                                 <com.flyco.roundview.RoundTextView style="@style/AppTheme.Label"
@@ -111,15 +82,15 @@
                                     android:text="关注"
                                     android:textColor="@android:color/white"
                                     app:rv_backgroundColor="@color/colorPrimary"
-                                    app:rv_cornerRadius="@dimen/padding_common_d"/>
+                                    app:rv_cornerRadius="@dimen/dimenPaddingDiminutive"/>
 
                                 <com.flyco.roundview.RoundTextView style="@style/AppTheme.Label"
                                     android:id="@+id/leaveword"
                                     android:layout_toLeftOf="@id/attention"
                                     android:layout_toStartOf="@id/attention"
                                     android:layout_marginTop="0dp"
-                                    android:layout_marginRight="@dimen/padding_common"
-                                    android:layout_marginLeft="@dimen/padding_common"
+                                    android:layout_marginRight="@dimen/dimenPaddingCommon"
+                                    android:layout_marginLeft="@dimen/dimenPaddingCommon"
                                     android:paddingTop="8dp"
                                     android:paddingBottom="8dp"
                                     android:paddingLeft="25dp"
@@ -142,24 +113,24 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_below="@id/nickname"
-                                    android:layout_marginTop="@dimen/padding_common">
+                                    android:layout_marginTop="@dimen/dimenPaddingCommon">
 
                                     <TextView style="@style/AppTheme.Label"
                                         android:id="@+id/relationship_attention"
                                         android:text="关注 84 "/>
                                     <TextView style="@style/AppTheme.Label"
                                         android:text="|"
-                                        android:layout_marginLeft="@dimen/padding_common_h"
-                                        android:layout_marginRight="@dimen/padding_common_h"/>
+                                        android:layout_marginLeft="@dimen/dimenPaddingHorizontal"
+                                        android:layout_marginRight="@dimen/dimenPaddingHorizontal"/>
                                     <TextView style="@style/AppTheme.Label"
                                         android:id="@+id/relationship_fans"
                                         android:text="粉丝 62"/>
                                 </LinearLayout>
 
-                                <TextView style="@style/AppTheme.Label.Discription"
+                                <TextView style="@style/AppTheme.Label.Description"
                                     android:id="@+id/signature"
                                     android:layout_below="@id/relationship"
-                                    android:layout_marginTop="@dimen/padding_common"
+                                    android:layout_marginTop="@dimen/dimenPaddingCommon"
                                     android:textColor="@color/colorTextAssistant"
                                     android:text="这个人很懒，什么也没留下..."/>
 
@@ -169,8 +140,8 @@
                                 android:id="@+id/avatar"
                                 android:layout_width="80dp"
                                 android:layout_height="80dp"
-                                android:layout_marginLeft="@dimen/padding_common"
-                                android:layout_marginStart="@dimen/padding_common"
+                                android:layout_marginLeft="@dimen/dimenPaddingCommon"
+                                android:layout_marginStart="@dimen/dimenPaddingCommon"
                                 android:src="@mipmap/image_avatar_5"
                                 app:civ_border_width="3dp"
                                 app:civ_border_color="@android:color/white"
@@ -188,7 +159,7 @@
                                 android:textColor="@android:color/white"
                                 android:text="访客总量 15"/>
 
-                            <View style="@style/AppTheme.Divison"
+                            <View style="@style/AppTheme.Division"
                                 android:layout_alignParentBottom="true"/>
                         </RelativeLayout>
 
@@ -198,20 +169,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:background="@color/colorBackgroudDark"
+                        android:background="@color/colorBackgroundDark"
                         android:paddingBottom="0dp"
                         app:layout_scrollFlags="scroll">
                         <LinearLayout style="@style/AppTheme.CommonBar.Panel"
-                            android:background="@color/colorDivison"
+                            android:background="@color/colorDivision"
                             android:paddingTop="@dimen/division_line"
                             android:paddingBottom="@dimen/division_line">
                             <LinearLayout style="@style/AppTheme.CommonBar.Bar"
                                 android:background="@android:color/white"
                                 android:id="@+id/fmc_center_dynamic">
                                 <TextView style="@style/AppTheme.CommonBar.Content.Value"
-                                    android:drawableLeft="@drawable/ic_feed_list_mail"
-                                    android:drawableStart="@drawable/ic_feed_list_mail"
-                                    android:drawableTint="@color/colorPrimary"
                                     android:text="发布动态"/>
                             </LinearLayout>
                         </LinearLayout>
@@ -225,8 +193,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/padding_common"
-                        android:paddingRight="@dimen/padding_common">
+                        android:paddingLeft="@dimen/dimenPaddingCommon"
+                        android:paddingRight="@dimen/dimenPaddingCommon">
                         <TextView style="@style/AppTheme.Label"
                             android:textColor="@android:color/tertiary_text_dark"
                             android:layout_marginTop="30dp"
@@ -235,8 +203,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/padding_common"
-                            android:layout_marginRight="@dimen/padding_common"
+                            android:layout_marginLeft="@dimen/dimenPaddingCommon"
+                            android:layout_marginRight="@dimen/dimenPaddingCommon"
                             android:gravity="center_horizontal"
                             android:orientation="vertical">
                             <View
@@ -252,7 +220,7 @@
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_margin="@dimen/padding_common"
+                                    android:layout_margin="@dimen/dimenPaddingCommon"
                                     android:contentDescription="@string/app_name"
                                     android:tint="#cccccc"
                                     app:srcCompat="@drawable/ic_feed_list_mail"/>
@@ -266,19 +234,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="30dp"
-                            android:layout_marginBottom="@dimen/padding_common_d"
+                            android:layout_marginBottom="@dimen/dimenPaddingDiminutive"
                             android:orientation="vertical"
-                            android:padding="@dimen/padding_common"
+                            android:padding="@dimen/dimenPaddingCommon"
                             app:rv_strokeColor="#cccccc"
                             app:rv_strokeWidth="@dimen/division_line"
-                            app:rv_cornerRadius="@dimen/padding_common_d">
+                            app:rv_cornerRadius="@dimen/dimenPaddingDiminutive">
                             <TextView style="@style/AppTheme.Label.Title"
                                 android:layout_gravity="center_vertical"
                                 android:textColor="@android:color/tertiary_text_dark"
                                 android:text="Steffen Norgaard Andersen"/>
-                            <TextView style="@style/AppTheme.Label.Discription"
+                            <TextView style="@style/AppTheme.Label.Description"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginTop="@dimen/padding_common_d"
+                                android:layout_marginTop="@dimen/dimenPaddingDiminutive"
                                 android:textColor="@android:color/tertiary_text_dark"
                                 android:text="Lorem ipsum dolor sit amet , consecteur adipiscing elit, sed do eiusmod tempor incidi-dunt ut labore et dlore magna aliqua. Ut enim ad minim veniam, sed do eiusmod quis nostrud exrcitation."/>
                         </com.flyco.roundview.RoundLinearLayout>
@@ -287,8 +255,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/padding_common"
-                        android:paddingRight="@dimen/padding_common">
+                        android:paddingLeft="@dimen/dimenPaddingCommon"
+                        android:paddingRight="@dimen/dimenPaddingCommon">
                         <TextView style="@style/AppTheme.Label"
                             android:textColor="@android:color/tertiary_text_dark"
                             android:layout_marginTop="30dp"
@@ -297,8 +265,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/padding_common"
-                            android:layout_marginRight="@dimen/padding_common"
+                            android:layout_marginLeft="@dimen/dimenPaddingCommon"
+                            android:layout_marginRight="@dimen/dimenPaddingCommon"
                             android:gravity="center_horizontal"
                             android:orientation="vertical">
                             <View
@@ -314,7 +282,7 @@
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_margin="@dimen/padding_common"
+                                    android:layout_margin="@dimen/dimenPaddingCommon"
                                     android:contentDescription="@string/app_name"
                                     android:tint="#cccccc"
                                     app:srcCompat="@drawable/ic_feed_list_photo"/>
@@ -328,10 +296,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="30dp"
-                            android:layout_marginBottom="@dimen/padding_common_d"
+                            android:layout_marginBottom="@dimen/dimenPaddingDiminutive"
                             android:orientation="vertical"
-                            app:rv_cornerRadius_TL="@dimen/padding_common_d"
-                            app:rv_cornerRadius_TR="@dimen/padding_common_d">
+                            app:rv_cornerRadius_TL="@dimen/dimenPaddingDiminutive"
+                            app:rv_cornerRadius_TR="@dimen/dimenPaddingDiminutive">
                             <ImageView style="@style/AppTheme.Label.Title"
                                 android:layout_width="match_parent"
                                 android:layout_gravity="center_vertical"
@@ -341,7 +309,7 @@
                                 android:src="@mipmap/image_practice_repast_1"/>
                             <TextView style="@style/AppTheme.Label.Title"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginTop="@dimen/padding_common_d"
+                                android:layout_marginTop="@dimen/dimenPaddingDiminutive"
                                 android:textColor="@android:color/tertiary_text_dark"
                                 android:text="winter farewell"/>
                         </com.flyco.roundview.RoundLinearLayout>
@@ -350,8 +318,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/padding_common"
-                        android:paddingRight="@dimen/padding_common">
+                        android:paddingLeft="@dimen/dimenPaddingCommon"
+                        android:paddingRight="@dimen/dimenPaddingCommon">
                         <TextView style="@style/AppTheme.Label"
                             android:textColor="#cccccc"
                             android:layout_marginTop="30dp"
@@ -360,8 +328,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/padding_common"
-                            android:layout_marginRight="@dimen/padding_common"
+                            android:layout_marginLeft="@dimen/dimenPaddingCommon"
+                            android:layout_marginRight="@dimen/dimenPaddingCommon"
                             android:gravity="center_horizontal"
                             android:orientation="vertical">
                             <View
@@ -377,7 +345,7 @@
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_margin="@dimen/padding_common"
+                                    android:layout_margin="@dimen/dimenPaddingCommon"
                                     android:contentDescription="@string/app_name"
                                     android:tint="#cccccc"
                                     app:srcCompat="@drawable/ic_feed_list_favorite"/>
@@ -391,8 +359,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="30dp"
-                            android:layout_marginBottom="@dimen/padding_common_d"
-                            app:rv_cornerRadius="@dimen/padding_common_d"
+                            android:layout_marginBottom="@dimen/dimenPaddingDiminutive"
+                            app:rv_cornerRadius="@dimen/dimenPaddingDiminutive"
                             app:rv_strokeColor="#cccccc"
                             app:rv_strokeWidth="@dimen/division_line">
                             <ImageView style="@style/AppTheme.Label.Title"
@@ -405,7 +373,7 @@
                                 android:src="@mipmap/image_avatar_5"/>
                             <TextView style="@style/AppTheme.Label.Title"
                                 android:layout_gravity="center_vertical"
-                                android:padding="@dimen/padding_common"
+                                android:padding="@dimen/dimenPaddingCommon"
                                 android:textColor="@android:color/tertiary_text_dark"
                                 android:text="winter farewell"/>
                         </com.flyco.roundview.RoundLinearLayout>
@@ -414,8 +382,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/padding_common"
-                        android:paddingRight="@dimen/padding_common">
+                        android:paddingLeft="@dimen/dimenPaddingCommon"
+                        android:paddingRight="@dimen/dimenPaddingCommon">
                         <TextView style="@style/AppTheme.Label"
                             android:textColor="@android:color/tertiary_text_dark"
                             android:layout_marginTop="30dp"
@@ -424,8 +392,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/padding_common"
-                            android:layout_marginRight="@dimen/padding_common"
+                            android:layout_marginLeft="@dimen/dimenPaddingCommon"
+                            android:layout_marginRight="@dimen/dimenPaddingCommon"
                             android:gravity="center_horizontal"
                             android:orientation="vertical">
                             <View
@@ -441,7 +409,7 @@
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_margin="@dimen/padding_common"
+                                    android:layout_margin="@dimen/dimenPaddingCommon"
                                     android:contentDescription="@string/app_name"
                                     android:tint="#cccccc"
                                     app:srcCompat="@drawable/ic_feed_list_photo"/>
@@ -455,10 +423,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="30dp"
-                            android:layout_marginBottom="@dimen/padding_common_d"
+                            android:layout_marginBottom="@dimen/dimenPaddingDiminutive"
                             android:orientation="vertical"
-                            app:rv_cornerRadius_TL="@dimen/padding_common_d"
-                            app:rv_cornerRadius_TR="@dimen/padding_common_d">
+                            app:rv_cornerRadius_TL="@dimen/dimenPaddingDiminutive"
+                            app:rv_cornerRadius_TR="@dimen/dimenPaddingDiminutive">
                             <ImageView style="@style/AppTheme.Label.Title"
                                 android:layout_width="match_parent"
                                 android:layout_gravity="center_vertical"
@@ -468,7 +436,7 @@
                                 android:src="@mipmap/image_practice_repast_3"/>
                             <TextView style="@style/AppTheme.Label.Title"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginTop="@dimen/padding_common_d"
+                                android:layout_marginTop="@dimen/dimenPaddingDiminutive"
                                 android:textColor="@android:color/tertiary_text_dark"
                                 android:text="winter farewell"/>
                         </com.flyco.roundview.RoundLinearLayout>
@@ -477,8 +445,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/padding_common"
-                        android:paddingRight="@dimen/padding_common">
+                        android:paddingLeft="@dimen/dimenPaddingCommon"
+                        android:paddingRight="@dimen/dimenPaddingCommon">
                         <TextView style="@style/AppTheme.Label"
                             android:textColor="@android:color/tertiary_text_dark"
                             android:layout_marginTop="30dp"
@@ -487,8 +455,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/padding_common"
-                            android:layout_marginRight="@dimen/padding_common"
+                            android:layout_marginLeft="@dimen/dimenPaddingCommon"
+                            android:layout_marginRight="@dimen/dimenPaddingCommon"
                             android:gravity="center_horizontal"
                             android:orientation="vertical">
                             <View
@@ -504,7 +472,7 @@
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_margin="@dimen/padding_common"
+                                    android:layout_margin="@dimen/dimenPaddingCommon"
                                     android:contentDescription="@string/app_name"
                                     android:tint="#cccccc"
                                     app:srcCompat="@drawable/ic_feed_list_favorite"/>
@@ -518,8 +486,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="30dp"
-                            android:layout_marginBottom="@dimen/padding_common_d"
-                            app:rv_cornerRadius="@dimen/padding_common_d"
+                            android:layout_marginBottom="@dimen/dimenPaddingDiminutive"
+                            app:rv_cornerRadius="@dimen/dimenPaddingDiminutive"
                             app:rv_strokeColor="#cccccc"
                             app:rv_strokeWidth="@dimen/division_line">
                             <ImageView style="@style/AppTheme.Label.Title"
@@ -532,7 +500,7 @@
                                 android:src="@mipmap/image_avatar_5"/>
                             <TextView style="@style/AppTheme.Label.Title"
                                 android:layout_gravity="center_vertical"
-                                android:padding="@dimen/padding_common"
+                                android:padding="@dimen/dimenPaddingCommon"
                                 android:textColor="@android:color/tertiary_text_dark"
                                 android:text="winter farewell"/>
                         </com.flyco.roundview.RoundLinearLayout>
@@ -541,8 +509,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/padding_common"
-                        android:paddingRight="@dimen/padding_common">
+                        android:paddingLeft="@dimen/dimenPaddingCommon"
+                        android:paddingRight="@dimen/dimenPaddingCommon">
                         <TextView style="@style/AppTheme.Label"
                             android:textColor="@android:color/tertiary_text_dark"
                             android:layout_marginTop="30dp"
@@ -551,8 +519,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/padding_common"
-                            android:layout_marginRight="@dimen/padding_common"
+                            android:layout_marginLeft="@dimen/dimenPaddingCommon"
+                            android:layout_marginRight="@dimen/dimenPaddingCommon"
                             android:gravity="center_horizontal"
                             android:orientation="vertical">
                             <View
@@ -568,7 +536,7 @@
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_margin="@dimen/padding_common"
+                                    android:layout_margin="@dimen/dimenPaddingCommon"
                                     android:contentDescription="@string/app_name"
                                     android:tint="#cccccc"
                                     app:srcCompat="@drawable/ic_feed_list_mail"/>
@@ -582,19 +550,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="30dp"
-                            android:layout_marginBottom="@dimen/padding_common_d"
+                            android:layout_marginBottom="@dimen/dimenPaddingDiminutive"
                             android:orientation="vertical"
-                            android:padding="@dimen/padding_common"
+                            android:padding="@dimen/dimenPaddingCommon"
                             app:rv_strokeColor="#cccccc"
                             app:rv_strokeWidth="@dimen/division_line"
-                            app:rv_cornerRadius="@dimen/padding_common_d">
+                            app:rv_cornerRadius="@dimen/dimenPaddingDiminutive">
                             <TextView style="@style/AppTheme.Label.Title"
                                 android:layout_gravity="center_vertical"
                                 android:textColor="@android:color/tertiary_text_dark"
                                 android:text="Steffen Norgaard Andersen"/>
-                            <TextView style="@style/AppTheme.Label.Discription"
+                            <TextView style="@style/AppTheme.Label.Description"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginTop="@dimen/padding_common_d"
+                                android:layout_marginTop="@dimen/dimenPaddingDiminutive"
                                 android:textColor="@android:color/tertiary_text_dark"
                                 android:text="Lorem ipsum dolor sit amet , consecteur adipiscing elit, sed do eiusmod tempor incidi-dunt ut labore et dlore magna aliqua. Ut enim ad minim veniam, sed do eiusmod quis nostrud exrcitation."/>
                         </com.flyco.roundview.RoundLinearLayout>
@@ -603,8 +571,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/padding_common"
-                        android:paddingRight="@dimen/padding_common">
+                        android:paddingLeft="@dimen/dimenPaddingCommon"
+                        android:paddingRight="@dimen/dimenPaddingCommon">
                         <TextView style="@style/AppTheme.Label"
                             android:textColor="@android:color/tertiary_text_dark"
                             android:layout_marginTop="30dp"
@@ -613,8 +581,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/padding_common"
-                            android:layout_marginRight="@dimen/padding_common"
+                            android:layout_marginLeft="@dimen/dimenPaddingCommon"
+                            android:layout_marginRight="@dimen/dimenPaddingCommon"
                             android:gravity="center_horizontal"
                             android:orientation="vertical">
                             <View
@@ -630,7 +598,7 @@
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_margin="@dimen/padding_common"
+                                    android:layout_margin="@dimen/dimenPaddingCommon"
                                     android:contentDescription="@string/app_name"
                                     android:tint="#cccccc"
                                     app:srcCompat="@drawable/ic_feed_list_photo"/>
@@ -644,10 +612,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="30dp"
-                            android:layout_marginBottom="@dimen/padding_common_d"
+                            android:layout_marginBottom="@dimen/dimenPaddingDiminutive"
                             android:orientation="vertical"
-                            app:rv_cornerRadius_TL="@dimen/padding_common_d"
-                            app:rv_cornerRadius_TR="@dimen/padding_common_d">
+                            app:rv_cornerRadius_TL="@dimen/dimenPaddingDiminutive"
+                            app:rv_cornerRadius_TR="@dimen/dimenPaddingDiminutive">
                             <ImageView style="@style/AppTheme.Label.Title"
                                 android:layout_width="match_parent"
                                 android:layout_gravity="center_vertical"
@@ -657,7 +625,7 @@
                                 android:src="@mipmap/image_practice_repast_1"/>
                             <TextView style="@style/AppTheme.Label.Title"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginTop="@dimen/padding_common_d"
+                                android:layout_marginTop="@dimen/dimenPaddingDiminutive"
                                 android:textColor="@android:color/tertiary_text_dark"
                                 android:text="winter farewell"/>
                         </com.flyco.roundview.RoundLinearLayout>
@@ -666,8 +634,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/padding_common"
-                        android:paddingRight="@dimen/padding_common">
+                        android:paddingLeft="@dimen/dimenPaddingCommon"
+                        android:paddingRight="@dimen/dimenPaddingCommon">
                         <TextView style="@style/AppTheme.Label"
                             android:textColor="@android:color/tertiary_text_dark"
                             android:layout_marginTop="30dp"
@@ -676,8 +644,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/padding_common"
-                            android:layout_marginRight="@dimen/padding_common"
+                            android:layout_marginLeft="@dimen/dimenPaddingCommon"
+                            android:layout_marginRight="@dimen/dimenPaddingCommon"
                             android:gravity="center_horizontal"
                             android:orientation="vertical">
                             <View
@@ -693,7 +661,7 @@
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_margin="@dimen/padding_common"
+                                    android:layout_margin="@dimen/dimenPaddingCommon"
                                     android:contentDescription="@string/app_name"
                                     android:tint="#cccccc"
                                     app:srcCompat="@drawable/ic_feed_list_favorite"/>
@@ -707,8 +675,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="30dp"
-                            android:layout_marginBottom="@dimen/padding_common_d"
-                            app:rv_cornerRadius="@dimen/padding_common_d"
+                            android:layout_marginBottom="@dimen/dimenPaddingDiminutive"
+                            app:rv_cornerRadius="@dimen/dimenPaddingDiminutive"
                             app:rv_strokeColor="#cccccc"
                             app:rv_strokeWidth="@dimen/division_line">
                             <ImageView style="@style/AppTheme.Label.Title"
@@ -721,7 +689,7 @@
                                 android:src="@mipmap/image_avatar_5"/>
                             <TextView style="@style/AppTheme.Label.Title"
                                 android:layout_gravity="center_vertical"
-                                android:padding="@dimen/padding_common"
+                                android:padding="@dimen/dimenPaddingCommon"
                                 android:textColor="@android:color/tertiary_text_dark"
                                 android:text="winter farewell"/>
                         </com.flyco.roundview.RoundLinearLayout>
@@ -730,8 +698,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/padding_common"
-                        android:paddingRight="@dimen/padding_common">
+                        android:paddingLeft="@dimen/dimenPaddingCommon"
+                        android:paddingRight="@dimen/dimenPaddingCommon">
                         <TextView style="@style/AppTheme.Label"
                             android:textColor="@android:color/tertiary_text_dark"
                             android:layout_marginTop="30dp"
@@ -740,8 +708,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/padding_common"
-                            android:layout_marginRight="@dimen/padding_common"
+                            android:layout_marginLeft="@dimen/dimenPaddingCommon"
+                            android:layout_marginRight="@dimen/dimenPaddingCommon"
                             android:gravity="center_horizontal"
                             android:orientation="vertical">
                             <View
@@ -757,7 +725,7 @@
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_margin="@dimen/padding_common"
+                                    android:layout_margin="@dimen/dimenPaddingCommon"
                                     android:contentDescription="@string/app_name"
                                     android:tint="#cccccc"
                                     app:srcCompat="@drawable/ic_feed_list_mail"/>
@@ -771,19 +739,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="30dp"
-                            android:layout_marginBottom="@dimen/padding_common_d"
+                            android:layout_marginBottom="@dimen/dimenPaddingDiminutive"
                             android:orientation="vertical"
-                            android:padding="@dimen/padding_common"
+                            android:padding="@dimen/dimenPaddingCommon"
                             app:rv_strokeColor="#cccccc"
                             app:rv_strokeWidth="@dimen/division_line"
-                            app:rv_cornerRadius="@dimen/padding_common_d">
+                            app:rv_cornerRadius="@dimen/dimenPaddingDiminutive">
                             <TextView style="@style/AppTheme.Label.Title"
                                 android:layout_gravity="center_vertical"
                                 android:textColor="@android:color/tertiary_text_dark"
                                 android:text="Steffen Norgaard Andersen"/>
-                            <TextView style="@style/AppTheme.Label.Discription"
+                            <TextView style="@style/AppTheme.Label.Description"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginTop="@dimen/padding_common_d"
+                                android:layout_marginTop="@dimen/dimenPaddingDiminutive"
                                 android:textColor="@android:color/tertiary_text_dark"
                                 android:text="Lorem ipsum dolor sit amet , consecteur adipiscing elit, sed do eiusmod tempor incidi-dunt ut labore et dlore magna aliqua. Ut enim ad minim veniam, sed do eiusmod quis nostrud exrcitation."/>
                         </com.flyco.roundview.RoundLinearLayout>
@@ -792,8 +760,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/padding_common"
-                        android:paddingRight="@dimen/padding_common">
+                        android:paddingLeft="@dimen/dimenPaddingCommon"
+                        android:paddingRight="@dimen/dimenPaddingCommon">
                         <TextView style="@style/AppTheme.Label"
                             android:textColor="@android:color/tertiary_text_dark"
                             android:layout_marginTop="30dp"
@@ -802,8 +770,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/padding_common"
-                            android:layout_marginRight="@dimen/padding_common"
+                            android:layout_marginLeft="@dimen/dimenPaddingCommon"
+                            android:layout_marginRight="@dimen/dimenPaddingCommon"
                             android:gravity="center_horizontal"
                             android:orientation="vertical">
                             <View
@@ -819,7 +787,7 @@
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_margin="@dimen/padding_common"
+                                    android:layout_margin="@dimen/dimenPaddingCommon"
                                     android:contentDescription="@string/app_name"
                                     android:tint="#cccccc"
                                     app:srcCompat="@drawable/ic_feed_list_photo"/>
@@ -833,10 +801,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="30dp"
-                            android:layout_marginBottom="@dimen/padding_common_d"
+                            android:layout_marginBottom="@dimen/dimenPaddingDiminutive"
                             android:orientation="vertical"
-                            app:rv_cornerRadius_TL="@dimen/padding_common_d"
-                            app:rv_cornerRadius_TR="@dimen/padding_common_d">
+                            app:rv_cornerRadius_TL="@dimen/dimenPaddingDiminutive"
+                            app:rv_cornerRadius_TR="@dimen/dimenPaddingDiminutive">
                             <ImageView style="@style/AppTheme.Label.Title"
                                 android:layout_width="match_parent"
                                 android:layout_gravity="center_vertical"
@@ -846,7 +814,7 @@
                                 android:src="@mipmap/image_practice_repast_1"/>
                             <TextView style="@style/AppTheme.Label.Title"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginTop="@dimen/padding_common_d"
+                                android:layout_marginTop="@dimen/dimenPaddingDiminutive"
                                 android:textColor="@android:color/tertiary_text_dark"
                                 android:text="winter farewell"/>
                         </com.flyco.roundview.RoundLinearLayout>
@@ -855,8 +823,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/padding_common"
-                        android:paddingRight="@dimen/padding_common">
+                        android:paddingLeft="@dimen/dimenPaddingCommon"
+                        android:paddingRight="@dimen/dimenPaddingCommon">
                         <TextView style="@style/AppTheme.Label"
                             android:textColor="@android:color/tertiary_text_dark"
                             android:layout_marginTop="30dp"
@@ -865,8 +833,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/padding_common"
-                            android:layout_marginRight="@dimen/padding_common"
+                            android:layout_marginLeft="@dimen/dimenPaddingCommon"
+                            android:layout_marginRight="@dimen/dimenPaddingCommon"
                             android:gravity="center_horizontal"
                             android:orientation="vertical">
                             <View
@@ -882,7 +850,7 @@
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_margin="@dimen/padding_common"
+                                    android:layout_margin="@dimen/dimenPaddingCommon"
                                     android:contentDescription="@string/app_name"
                                     android:tint="#cccccc"
                                     app:srcCompat="@drawable/ic_feed_list_favorite"/>
@@ -896,8 +864,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="30dp"
-                            android:layout_marginBottom="@dimen/padding_common_d"
-                            app:rv_cornerRadius="@dimen/padding_common_d"
+                            android:layout_marginBottom="@dimen/dimenPaddingDiminutive"
+                            app:rv_cornerRadius="@dimen/dimenPaddingDiminutive"
                             app:rv_strokeColor="#cccccc"
                             app:rv_strokeWidth="@dimen/division_line">
                             <ImageView style="@style/AppTheme.Label.Title"
@@ -910,7 +878,7 @@
                                 android:src="@mipmap/image_avatar_5"/>
                             <TextView style="@style/AppTheme.Label.Title"
                                 android:layout_gravity="center_vertical"
-                                android:padding="@dimen/padding_common"
+                                android:padding="@dimen/dimenPaddingCommon"
                                 android:textColor="@android:color/tertiary_text_dark"
                                 android:text="winter farewell"/>
                         </com.flyco.roundview.RoundLinearLayout>
@@ -919,8 +887,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/padding_common"
-                        android:paddingRight="@dimen/padding_common">
+                        android:paddingLeft="@dimen/dimenPaddingCommon"
+                        android:paddingRight="@dimen/dimenPaddingCommon">
                         <TextView style="@style/AppTheme.Label"
                             android:textColor="@android:color/tertiary_text_dark"
                             android:layout_marginTop="30dp"
@@ -929,8 +897,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/padding_common"
-                            android:layout_marginRight="@dimen/padding_common"
+                            android:layout_marginLeft="@dimen/dimenPaddingCommon"
+                            android:layout_marginRight="@dimen/dimenPaddingCommon"
                             android:gravity="center_horizontal"
                             android:orientation="vertical">
                             <View
@@ -946,7 +914,7 @@
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_margin="@dimen/padding_common"
+                                    android:layout_margin="@dimen/dimenPaddingCommon"
                                     android:contentDescription="@string/app_name"
                                     android:tint="#cccccc"
                                     app:srcCompat="@drawable/ic_feed_list_mail"/>
@@ -960,19 +928,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="30dp"
-                            android:layout_marginBottom="@dimen/padding_common_d"
+                            android:layout_marginBottom="@dimen/dimenPaddingDiminutive"
                             android:orientation="vertical"
-                            android:padding="@dimen/padding_common"
+                            android:padding="@dimen/dimenPaddingCommon"
                             app:rv_strokeColor="#cccccc"
                             app:rv_strokeWidth="@dimen/division_line"
-                            app:rv_cornerRadius="@dimen/padding_common_d">
+                            app:rv_cornerRadius="@dimen/dimenPaddingDiminutive">
                             <TextView style="@style/AppTheme.Label.Title"
                                 android:layout_gravity="center_vertical"
                                 android:textColor="@android:color/tertiary_text_dark"
                                 android:text="Steffen Norgaard Andersen"/>
-                            <TextView style="@style/AppTheme.Label.Discription"
+                            <TextView style="@style/AppTheme.Label.Description"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginTop="@dimen/padding_common_d"
+                                android:layout_marginTop="@dimen/dimenPaddingDiminutive"
                                 android:textColor="@android:color/tertiary_text_dark"
                                 android:text="Lorem ipsum dolor sit amet , consecteur adipiscing elit, sed do eiusmod tempor incidi-dunt ut labore et dlore magna aliqua. Ut enim ad minim veniam, sed do eiusmod quis nostrud exrcitation."/>
                         </com.flyco.roundview.RoundLinearLayout>
@@ -981,8 +949,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/padding_common"
-                        android:paddingRight="@dimen/padding_common">
+                        android:paddingLeft="@dimen/dimenPaddingCommon"
+                        android:paddingRight="@dimen/dimenPaddingCommon">
                         <TextView style="@style/AppTheme.Label"
                             android:textColor="@android:color/tertiary_text_dark"
                             android:layout_marginTop="30dp"
@@ -991,8 +959,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/padding_common"
-                            android:layout_marginRight="@dimen/padding_common"
+                            android:layout_marginLeft="@dimen/dimenPaddingCommon"
+                            android:layout_marginRight="@dimen/dimenPaddingCommon"
                             android:gravity="center_horizontal"
                             android:orientation="vertical">
                             <View
@@ -1008,7 +976,7 @@
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_margin="@dimen/padding_common"
+                                    android:layout_margin="@dimen/dimenPaddingCommon"
                                     android:contentDescription="@string/app_name"
                                     android:tint="#cccccc"
                                     app:srcCompat="@drawable/ic_feed_list_photo"/>
@@ -1022,10 +990,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="30dp"
-                            android:layout_marginBottom="@dimen/padding_common_d"
+                            android:layout_marginBottom="@dimen/dimenPaddingDiminutive"
                             android:orientation="vertical"
-                            app:rv_cornerRadius_TL="@dimen/padding_common_d"
-                            app:rv_cornerRadius_TR="@dimen/padding_common_d">
+                            app:rv_cornerRadius_TL="@dimen/dimenPaddingDiminutive"
+                            app:rv_cornerRadius_TR="@dimen/dimenPaddingDiminutive">
                             <ImageView style="@style/AppTheme.Label.Title"
                                 android:layout_width="match_parent"
                                 android:layout_gravity="center_vertical"
@@ -1035,7 +1003,7 @@
                                 android:src="@mipmap/image_practice_repast_1"/>
                             <TextView style="@style/AppTheme.Label.Title"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginTop="@dimen/padding_common_d"
+                                android:layout_marginTop="@dimen/dimenPaddingDiminutive"
                                 android:textColor="@android:color/tertiary_text_dark"
                                 android:text="winter farewell"/>
                         </com.flyco.roundview.RoundLinearLayout>
@@ -1045,4 +1013,35 @@
         </android.support.v4.widget.NestedScrollView>
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <android.support.v7.widget.Toolbar style="@style/AppTheme.Toolbar"
+        android:id="@+id/toolbar"
+        android:background="@android:color/transparent"
+        android:layout_marginBottom="0dp"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:layout_collapseMode="pin">
+        <android.support.v7.widget.ButtonBarLayout
+            android:id="@+id/buttonBarLayout"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/toolbar_avatar"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="@dimen/dimenPaddingDiminutive"
+                android:layout_marginRight="@dimen/dimenPaddingDiminutive"
+                android:src="@mipmap/image_avatar_5"
+                app:civ_border_width="@dimen/division_line"
+                app:civ_border_color="@android:color/white"
+                app:civ_border_overlay="true"/>
+            <TextView
+                android:id="@+id/title"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="16sp"
+                android:text="一醉方休"/>
+        </android.support.v7.widget.ButtonBarLayout>
+    </android.support.v7.widget.Toolbar>
 </FrameLayout>

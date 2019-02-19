@@ -19,7 +19,7 @@ public class ProfilePracticeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_practice_profile);
 
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,7 +31,7 @@ public class ProfilePracticeActivity extends AppCompatActivity {
         StatusBarUtil.immersive(this);
         StatusBarUtil.setPaddingSmart(this, toolbar);
         StatusBarUtil.setPaddingSmart(this, findViewById(R.id.profile));
-        StatusBarUtil.setPaddingSmart(this, findViewById(R.id.blurview));
+        StatusBarUtil.setPaddingSmart(this, findViewById(R.id.blurView));
     }
 
 }
